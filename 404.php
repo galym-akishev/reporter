@@ -8,13 +8,20 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 $APPLICATION->SetTitle("404 Not Found");
 
-$APPLICATION->IncludeComponent("bitrix:main.map", ".default", Array(
-	"LEVEL"	=>	"3",
-	"COL_NUM"	=>	"2",
-	"SHOW_DESCRIPTION"	=>	"Y",
-	"SET_TITLE"	=>	"Y",
-	"CACHE_TIME"	=>	"36000000"
-	)
-);
+?>
 
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<main>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto text-center">
+          <img loading="lazy" decoding="async" src="<?= SITE_TEMPLATE_PATH ?>/assets/images/404.png" alt="404" class="img-fluid mb-4" width="500" height="350">
+          <h1 class="mb-4">Страница не найдена!</h1>
+          <a href="/" class="btn btn-outline-primary">Главная страница</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php"); ?>
