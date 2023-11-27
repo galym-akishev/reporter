@@ -39,13 +39,37 @@ foreach ($arResult["ITEMS"] as $key => $arItem) {
  * Get the latest recommended article for sidebar
  */
 
-$recordArray = array_filter($arResult["ITEMS"], function ($arItem) {
+$recommendForSidebar = array_filter($arResult["ITEMS"], function ($arItem) {
     if ($arItem["PROPERTIES"]["recommend_sidebar"]["VALUE"] == 1) {
         return $arItem;
     }
 });
 
-if (!empty($recordArray)) {
-    $arResult["RECOMMEND_SIDEBAR"] = end($recordArray);
+if (!empty($recommendForSidebar)) {
+    $arResult["RECOMMEND_SIDEBAR"] = end($recommendForSidebar);
 }
 
+/*
+ * Get the latest recommended article for front page (latest article)
+ */
+$recommendForFrontPage = array_filter($arResult["ITEMS"], function ($arItem) {
+    if ($arItem["PROPERTIES"]["recommend_front_page"]["VALUE"] == 1) {
+        return $arItem;
+    }
+});
+
+if (!empty($recommendForFrontPage)) {
+    $arResult["RECOMMEND_FRONT_PAGE"] = end($recommendForFrontPage);
+}
+
+/*
+ * Get the author
+ */
+$result = CIBlockElement::GetList(
+    Array("SORT"=>"ASC"),
+    Array("IBLOCK_CODE"=>"author_project_item")
+);
+if ($author = $result->GetNext()) {
+    $arResult["PROJECT_AUTHOR"] = $author;
+    $arResult["PROJECT_AUTHOR"]["PICTURE_URL"] = CFile::GetPath($arResult["PROJECT_AUTHOR"]["DETAIL_PICTURE"]);
+}
