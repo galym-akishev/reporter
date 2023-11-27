@@ -1,6 +1,7 @@
 <?php
 
 /** @var array $arParams */
+
 /*
  * Get all section names for all articles
 */
@@ -19,7 +20,7 @@ while ($result = $dbList->GetNext()) {
 /*
  * Get all section names for each article
  */
-foreach ($arResult["ITEMS"] as $key=>$arItem) {
+foreach ($arResult["ITEMS"] as $key => $arItem) {
     $idArticle = $arItem["ID"];
     $dbList = CIBlockElement::GetElementGroups(
         $idArticle,
@@ -33,3 +34,18 @@ foreach ($arResult["ITEMS"] as $key=>$arItem) {
         ];
     }
 }
+
+/*
+ * Get the latest recommended article for sidebar
+ */
+
+$recordArray = array_filter($arResult["ITEMS"], function ($arItem) {
+    if ($arItem["PROPERTIES"]["recommend_sidebar"]["VALUE"] == 1) {
+        return $arItem;
+    }
+});
+
+if (!empty($recordArray)) {
+    $arResult["RECOMMEND_SIDEBAR"] = end($recordArray);
+}
+
