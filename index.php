@@ -78,7 +78,7 @@ $APPLICATION->SetPageProperty("keywords", "Reporter, журналист, усл�
                         "SEF_MODE" => "Y",
                         "SEF_URL_TEMPLATES" => Array(
                             "detail" => "#ELEMENT_CODE#/",
-                            "news" => "",
+                            "news" => "articles/",
                             "search" => "search/",
                             "section" => "#SECTION_CODE#/"
                         ),

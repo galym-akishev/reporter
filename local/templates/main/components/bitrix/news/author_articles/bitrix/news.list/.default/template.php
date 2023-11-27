@@ -17,15 +17,9 @@ $this->setFrameMode(true);
 
 <?php
 
-echo "ШВЖ";
-$res = CIBlockSection::GetByID(5); // возвращает название раздела по ID
-if ($ar_res = $res->GetNext()) {
-    echo $ar_res['NAME'];
-}
-
-echo "<pre>";
-print_r($arResult);
-echo "<pre>";
+//echo "<pre>";
+//print_r($arResult);
+//echo "<pre>";
 ?>
 
 <div class="col-lg-8 mb-5 mb-lg-0">
@@ -53,9 +47,11 @@ echo "<pre>";
                         </a>
                         <div class="card-body px-0 pb-0">
                             <ul class="post-meta mb-2">
-                                <li>
-                                    <a href="#!">travel</a>
-                                </li>
+                                <?php foreach($arItem["ARTICLE_SECTIONS"] as $section) : ?>
+                                    <li>
+                                        <a href="<?= $section["LINK"] ?>"><?= $section["NAME"] ?></a>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                             <h2>
                                 <a class="post-title" href="<?=$arItem["DETAIL_PAGE_URL"]?>">
