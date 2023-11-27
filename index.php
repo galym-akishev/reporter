@@ -70,10 +70,9 @@ $APPLICATION->SetPageProperty("keywords", "Reporter, журналист, усл�
         "SEF_FOLDER" => "/",
         "SEF_MODE" => "Y",
         "SEF_URL_TEMPLATES" => Array(
-            "detail" => "#ELEMENT_CODE#/",
-            "news" => "articles/",
-            "search" => "search/",
-            "section" => "#SECTION_CODE#/"
+            "detail"=>"#SECTION_CODE#/#ELEMENT_CODE#/",
+            "news"=>"/articles",
+            "section"=>"#SECTION_CODE#/",
         ),
         "SET_LAST_MODIFIED" => "N",
         "SET_STATUS_404" => "Y",
