@@ -67,11 +67,11 @@ $APPLICATION->SetPageProperty("keywords", "Reporter, журналист, усл�
         "PAGER_TEMPLATE" => ".default",
         "PAGER_TITLE" => "Новости",
         "PREVIEW_TRUNCATE_LEN" => "",
-        "SEF_FOLDER" => "/",
+        "SEF_FOLDER" => "/articles/",
         "SEF_MODE" => "Y",
         "SEF_URL_TEMPLATES" => Array(
             "detail"=>"#SECTION_CODE#/#ELEMENT_CODE#/",
-            "news"=>"/articles",
+            "news"=>"",
             "section"=>"#SECTION_CODE#/",
         ),
         "SET_LAST_MODIFIED" => "N",

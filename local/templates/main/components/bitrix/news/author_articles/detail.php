@@ -13,6 +13,10 @@
 $this->setFrameMode(true);
 ?>
 
+<?php
+
+echo 555555555555555;
+?>
 <?$ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",
 	"",

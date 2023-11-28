@@ -28,7 +28,7 @@ $this->setFrameMode(true);
                             <div class="col-12 mb-4">
                                 <article class="card article-card">
                                     <a
-                                            href="<?= rtrim($arResult["RECOMMEND_FRONT_PAGE"]["LIST_PAGE_URL"], '/') . $arResult["RECOMMEND_FRONT_PAGE"]["DETAIL_PAGE_URL"] ?>"
+                                            href="<?= $arResult["RECOMMEND_FRONT_PAGE"]["DETAIL_PAGE_URL"] ?>"
                                     >
                                         <div class="card-image">
                                             <div class="post-info">
@@ -55,7 +55,7 @@ $this->setFrameMode(true);
                                         <h2 class="h1">
                                             <a
                                                     class="post-title"
-                                                    href="<?= rtrim($arResult["RECOMMEND_FRONT_PAGE"]["LIST_PAGE_URL"], '/') . $arResult["RECOMMEND_FRONT_PAGE"]["DETAIL_PAGE_URL"] ?>">
+                                                    href="<?= $arResult["RECOMMEND_FRONT_PAGE"]["DETAIL_PAGE_URL"] ?>">
                                                 <?= $arResult["RECOMMEND_FRONT_PAGE"]["PROPERTIES"]["article_title"]["VALUE"] ?>
                                             </a>
                                         </h2>
@@ -65,7 +65,7 @@ $this->setFrameMode(true);
                                         <div class="content">
                                             <a
                                                     class="read-more-btn"
-                                                    href="<?= rtrim($arResult["RECOMMEND_FRONT_PAGE"]["LIST_PAGE_URL"], '/') . $arResult["RECOMMEND_FRONT_PAGE"]["DETAIL_PAGE_URL"] ?>"
+                                                    href="<?= $arResult["RECOMMEND_FRONT_PAGE"]["DETAIL_PAGE_URL"] ?>"
                                             >
                                                 Читать
                                             </a>
@@ -78,7 +78,7 @@ $this->setFrameMode(true);
                             <div class="col-md-6 mb-4">
                                 <article class="card article-card article-card-sm h-100">
                                     <div>
-                                        <a href="<?= rtrim($arItem["LIST_PAGE_URL"], '/') . $arItem["DETAIL_PAGE_URL"]?>">
+                                        <a href="<?= $arItem["DETAIL_PAGE_URL"]?>">
                                             <div class="card-image">
                                                 <div class="post-info">
                                                     <span class="text-uppercase">
@@ -106,13 +106,13 @@ $this->setFrameMode(true);
                                             <h2>
                                                 <a
                                                         class="post-title"
-                                                        href="<?= rtrim($arItem["LIST_PAGE_URL"], '/') .  $arItem["DETAIL_PAGE_URL"]?>">
+                                                        href="<?= $arItem["DETAIL_PAGE_URL"]?>">
                                                     <?= $arItem["PROPERTIES"]["article_title"]["~VALUE"] ?>
                                                 </a>
                                             </h2>
                                             <p class="card-text"><?= $arItem["~PREVIEW_TEXT"] ?></p>
                                             <div class="content">
-                                                <a class="read-more-btn" href="<?= rtrim($arItem["LIST_PAGE_URL"], '/') . $arItem["DETAIL_PAGE_URL"]?>">
+                                                <a class="read-more-btn" href="<?= $arItem["DETAIL_PAGE_URL"]?>">
                                                     Читать далее
                                                 </a>
                                             </div>
@@ -169,7 +169,7 @@ $this->setFrameMode(true);
                                                     <div class="card-body px-0 pb-1">
                                                         <h3>
                                                             <a class="post-title post-title-sm"
-                                                               href="<?= rtrim($arResult["RECOMMEND_SIDEBAR"]["LIST_PAGE_URL"], '/') . $arResult["RECOMMEND_SIDEBAR"]["DETAIL_PAGE_URL"] ?>">
+                                                               href="<?= $arResult["RECOMMEND_SIDEBAR"]["DETAIL_PAGE_URL"] ?>">
                                                                 <?= $arResult["RECOMMEND_SIDEBAR"]["PROPERTIES"]["article_title"]["VALUE"] ?>
                                                             </a>
                                                         </h3>
@@ -177,7 +177,7 @@ $this->setFrameMode(true);
                                                         <div class="content">
                                                             <a
                                                                     class="read-more-btn"
-                                                                    href="<?= rtrim($arResult["RECOMMEND_SIDEBAR"]["LIST_PAGE_URL"], '/') . $arResult["RECOMMEND_SIDEBAR"]["DETAIL_PAGE_URL"] ?>">
+                                                                    href="<?= $arResult["RECOMMEND_SIDEBAR"]["DETAIL_PAGE_URL"] ?>">
                                                                 Читать
                                                             </a>
                                                         </div>
@@ -188,7 +188,7 @@ $this->setFrameMode(true);
                                                 <?php if ($arItem["PROPERTIES"]["recommend_sidebar"]["VALUE"] == '1'): ?>
                                                     <a
                                                             class="media align-items-center"
-                                                            href="<?= rtrim($arItem["LIST_PAGE_URL"], '/') . $arItem["DETAIL_PAGE_URL"] ?>"
+                                                            href="<?= $arItem["DETAIL_PAGE_URL"] ?>"
                                                     >
                                                         <img
                                                                 src="<?= $arItem["PREVIEW_PICTURE"]["SAFE_SRC"] ?>"
