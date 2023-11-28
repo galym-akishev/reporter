@@ -46,11 +46,6 @@ $this->setFrameMode(true);
 ?>
 <?php endif ?>
 
-<?php
-
-echo 66666666666666;
-?>
-
 <?php $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	"",
@@ -132,9 +127,3 @@ echo 66666666666666;
 	),
 	$component
 );?>
-
-<?php
-echo "<pre>";
-print_r($arResult);
-echo "<pre>";
-?>

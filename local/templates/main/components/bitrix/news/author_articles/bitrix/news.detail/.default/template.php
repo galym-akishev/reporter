@@ -13,84 +13,107 @@
 $this->setFrameMode(true);
 ?>
 
-<div class="news-detail">
-	<?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>
-		<img
-			class="detail_picture"
-			border="0"
-			src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>"
-			width="<?=$arResult["DETAIL_PICTURE"]["WIDTH"]?>"
-			height="<?=$arResult["DETAIL_PICTURE"]["HEIGHT"]?>"
-			alt="<?=$arResult["DETAIL_PICTURE"]["ALT"]?>"
-			title="<?=$arResult["DETAIL_PICTURE"]["TITLE"]?>"
-			/>
-	<?endif?>
-	<?if($arParams["DISPLAY_DATE"]!="N" && $arResult["DISPLAY_ACTIVE_FROM"]):?>
-		<span class="news-date-time"><?=$arResult["DISPLAY_ACTIVE_FROM"]?></span>
-	<?endif;?>
-	<?if($arParams["DISPLAY_NAME"]!="N" && $arResult["NAME"]):?>
-		<h3><?=$arResult["NAME"]?></h3>
-	<?endif;?>
-	<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && ($arResult["FIELDS"]["PREVIEW_TEXT"] ?? '')):?>
-		<p><?=$arResult["FIELDS"]["PREVIEW_TEXT"];unset($arResult["FIELDS"]["PREVIEW_TEXT"]);?></p>
-	<?endif;?>
-	<?if($arResult["NAV_RESULT"]):?>
-		<?if($arParams["DISPLAY_TOP_PAGER"]):?><?=$arResult["NAV_STRING"]?><br /><?endif;?>
-		<?echo $arResult["NAV_TEXT"];?>
-		<?if($arParams["DISPLAY_BOTTOM_PAGER"]):?><br /><?=$arResult["NAV_STRING"]?><?endif;?>
-	<?elseif($arResult["DETAIL_TEXT"] <> ''):?>
-		<?echo $arResult["DETAIL_TEXT"];?>
-	<?else:?>
-		<?echo $arResult["PREVIEW_TEXT"];?>
-	<?endif?>
-	<div style="clear:both"></div>
-	<br />
-	<?foreach($arResult["FIELDS"] as $code=>$value):
-		if ('PREVIEW_PICTURE' == $code || 'DETAIL_PICTURE' == $code)
-		{
-			?><?=GetMessage("IBLOCK_FIELD_".$code)?>:&nbsp;<?
-			if (!empty($value) && is_array($value))
-			{
-				?><img border="0" src="<?=$value["SRC"]?>" width="<?=$value["WIDTH"]?>" height="<?=$value["HEIGHT"]?>"><?
-			}
-		}
-		else
-		{
-			?><?=GetMessage("IBLOCK_FIELD_".$code)?>:&nbsp;<?=$value;?><?
-		}
-		?><br />
-	<?endforeach;
-	foreach($arResult["DISPLAY_PROPERTIES"] as $pid=>$arProperty):?>
-
-		<?=$arProperty["NAME"]?>:&nbsp;
-		<?if(is_array($arProperty["DISPLAY_VALUE"])):?>
-			<?=implode("&nbsp;/&nbsp;", $arProperty["DISPLAY_VALUE"]);?>
-		<?else:?>
-			<?=$arProperty["DISPLAY_VALUE"];?>
-		<?endif?>
-		<br />
-	<?endforeach;
-	if(array_key_exists("USE_SHARE", $arParams) && $arParams["USE_SHARE"] == "Y")
-	{
-		?>
-		<div class="news-detail-share">
-			<noindex>
-			<?
-			$APPLICATION->IncludeComponent("bitrix:main.share", "", array(
-					"HANDLERS" => $arParams["SHARE_HANDLERS"],
-					"PAGE_URL" => $arResult["~DETAIL_PAGE_URL"],
-					"PAGE_TITLE" => $arResult["~NAME"],
-					"SHORTEN_URL_LOGIN" => $arParams["SHARE_SHORTEN_URL_LOGIN"],
-					"SHORTEN_URL_KEY" => $arParams["SHARE_SHORTEN_URL_KEY"],
-					"HIDE" => $arParams["SHARE_HIDE"],
-				),
-				$component,
-				array("HIDE_ICONS" => "Y")
-			);
-			?>
-			</noindex>
-		</div>
-		<?
-	}
-	?>
-</div>
+<main>
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <article>
+                        <img src="<?= $arResult["DETAIL_PICTURE"]["SAFE_SRC"] ?>" alt="<?= $arResult["NAME"] ?>" class="w-100">
+                        <ul class="post-meta mb-2 mt-4">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-right:5px;margin-top:-4px" class="text-dark" viewBox="0 0 16 16">
+                                    <path d="M5.5 10.5A.5.5 0 0 1 6 10h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z" />
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z" />
+                                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z" />
+                                </svg> <span><?= $arResult["ACTIVE_FROM"] ?></span>
+                            </li>
+                        </ul>
+                        <h1 class="my-3"><?= $arResult["PROPERTIES"]["article_title"]["VALUE"] ?></h1>
+                        <ul class="post-meta mb-4">
+                            <?php foreach ($arResult["ARTICLE_SECTIONS"] as $section): ?>
+                                <li>
+                                    <a href="<?= $section["LINK"] ?>">
+                                        <?= $section["NAME"] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="content text-left">
+                            <?= $arResult["DETAIL_TEXT"] ?>
+                        </div>
+                    </article>
+                </div>
+                <!-- Sidebar-->
+                <div class="col-lg-4">
+                    <div class="widget-blocks">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?php if (isset($arResult["PROJECT_AUTHOR"])): ?>
+                                    <div class="widget">
+                                        <div class="widget-body">
+                                            <img
+                                                    src="<?= $arResult["PROJECT_AUTHOR"]["PICTURE_URL"] ?>"
+                                                    alt="<?= $arResult["PROJECT_AUTHOR"]["NAME"] ?>"
+                                                    class="w-100 author-thumb-sm d-block"
+                                            >
+                                            <h2 class="widget-title my-3"><?= $arResult["PROJECT_AUTHOR"]["NAME"] ?></h2>
+                                            <p class="mb-3 pb-2">
+                                                <?= $arResult["PROJECT_AUTHOR"]["PREVIEW_TEXT"] ?>
+                                            </p>
+                                            <a href="/about-me/" class="btn btn-sm btn-outline-primary">
+                                                далее
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php endif ?>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="widget">
+                                    <h2 class="section-title mb-3">Рекомендуем</h2>
+                                    <div class="widget-body">
+                                        <div class="widget-list">
+                                            <?php foreach ($arResult["RECOMMENDED_FOR_SIDEBAR_ARTICLES"] as $arItem): ?>
+                                                <a
+                                                        class="media align-items-center"
+                                                        href="<?= $arItem["DETAIL_PAGE_URL"] ?>"
+                                                >
+                                                    <img
+                                                            src="<?= $arItem["DETAIL_PICTURE"] ?>"
+                                                            alt="<?= $arItem["TITLE"] ?>"
+                                                            class="w-100"
+                                                    >
+                                                    <div class="media-body ml-3">
+                                                        <h3 style="margin-top:-5px"><?= $arItem["TITLE"] ?></h3>
+                                                        <p class="mb-0 small"><?= $arItem["PREVIEW_TEXT"] ?></p>
+                                                    </div>
+                                                </a>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="widget">
+                                    <h2 class="section-title mb-3">Категории</h2>
+                                    <div class="widget-body">
+                                        <ul class="widget-list">
+                                            <?php foreach($arResult["ARTICLE_SECTIONS_OF_ALL_ARTICLES"] as $section): ?>
+                                                <li>
+                                                    <a href="<?= $section["LINK"] ?>">
+                                                        <?= $section["NAME"] ?>
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Sidebar-->
+            </div>
+        </div>
+    </section>
+</main>

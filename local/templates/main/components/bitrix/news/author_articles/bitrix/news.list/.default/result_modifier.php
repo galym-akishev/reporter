@@ -38,7 +38,6 @@ foreach ($arResult["ITEMS"] as $key => $arItem) {
 /*
  * Get the latest recommended article for sidebar
  */
-
 $recommendForSidebar = array_filter($arResult["ITEMS"], function ($arItem) {
     if ($arItem["PROPERTIES"]["recommend_sidebar"]["VALUE"] == 1) {
         return $arItem;

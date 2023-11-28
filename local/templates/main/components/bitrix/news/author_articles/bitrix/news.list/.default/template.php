@@ -140,7 +140,7 @@ $this->setFrameMode(true);
                                             <p class="mb-3 pb-2">
                                                 <?= $arResult["PROJECT_AUTHOR"]["PREVIEW_TEXT"] ?>
                                             </p>
-                                            <a href="about-me/" class="btn btn-sm btn-outline-primary">
+                                            <a href="/about-me/" class="btn btn-sm btn-outline-primary">
                                                 далее
                                             </a>
                                         </div>
