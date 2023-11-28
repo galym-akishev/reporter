@@ -84,7 +84,7 @@ $APPLICATION->SetPageProperty("keywords", "Reporter, журналист, усл�
         "SORT_ORDER2" => "ASC",
         "STRICT_SECTION_CHECK" => "N",
         "USE_CATEGORIES" => "Y",
-        "USE_FILTER" => "Y",
+        "USE_FILTER" => "N",
         "USE_PERMISSIONS" => "N",
         "USE_RATING" => "N",
         "USE_REVIEW" => "N",
