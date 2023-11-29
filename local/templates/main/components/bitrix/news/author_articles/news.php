@@ -15,17 +15,6 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 $this->setFrameMode(true);
 ?>
 
-<?php if($arParams["USE_SEARCH"]=="Y"): ?>
-	<?php $APPLICATION->IncludeComponent(
-		"bitrix:search.form",
-		"flat",
-		Array(
-			"PAGE" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["search"]
-		),
-		$component
-	);?>
-<?php endif ?>
-
 <?php $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	"",

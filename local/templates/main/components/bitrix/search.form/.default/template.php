@@ -11,13 +11,8 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);?>
-<div class="bx-searchform">
-<form action="<?=$arResult["FORM_ACTION"]?>">
-	<div class="bx-input-group">
-		<input type="text" name="q" value="" size="15" maxlength="50" class="bx-form-control" placeholder="<?=GetMessage("BSF_T_SEARCH_BUTTON");?>">
-		<span class="bx-input-group-btn">
-			<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-		</span>
-	</div>
+
+<form action="<?=$arResult["FORM_ACTION"]?>" class="search order-lg-3 order-md-2 order-3 ml-auto">
+	<input class="search-input" type="text" name="q" value="" size="15" maxlength="50" placeholder="Поиск..." />
+	<input class="search-submit" name="s" type="submit" value="" />
 </form>
-</div>

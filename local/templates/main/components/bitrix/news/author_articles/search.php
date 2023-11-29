@@ -1,4 +1,6 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<?php
+    if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
+        die();
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -12,9 +14,10 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(false);
 ?>
-<?$APPLICATION->IncludeComponent(
+
+<?php $APPLICATION->IncludeComponent(
 	"bitrix:search.page",
-	"clear",
+	"",
 	Array(
 		"CHECK_DATES" => $arParams["CHECK_DATES"]!=="N"? "Y": "N",
 		"arrWHERE" => array("iblock_".$arParams["IBLOCK_TYPE"]),
@@ -28,7 +31,7 @@ $this->setFrameMode(false);
 		"CACHE_TIME" => $arParams["CACHE_TIME"],
 		"SET_TITLE" => $arParams["SET_TITLE"],
 		"arrFILTER_iblock_".$arParams["IBLOCK_TYPE"] => array($arParams["IBLOCK_ID"]),
+		"PAGE_RESULT_COUNT" => "3",
 	),
 	$component
 );?>
-<p><a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
