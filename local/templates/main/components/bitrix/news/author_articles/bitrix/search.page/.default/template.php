@@ -31,11 +31,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                         <a class="search-result-link" href="<?= $arItem["URL"] ?>">
                                             <?= $arItem["TITLE_FORMATED"] ?>
                                         </a>
-                                        <?php if(!empty($arItem["BODY_FORMATED"])): ?>
-                                            <p><?= $arItem["BODY_FORMATED"] ?></p>
-                                        <?php else: ?>
-                                            <p>Раздел <?= $arItem["TITLE_FORMATED"] ?></p>
-                                        <?php endif; ?>
+                                        <p>
+                                            <?= $arItem["BODY_FORMATED"] ?>
+                                        </p>
                                     </article>
                                 </div>
                             <?php endforeach; ?>
