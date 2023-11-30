@@ -48,9 +48,11 @@ $this->setFrameMode(true);
                                     </a>
                                     <div class="card-body px-0 pb-1">
                                         <ul class="post-meta mb-2">
-                                            <li> <a href="#!">travel</a>
-                                                <a href="#!">news</a>
-                                            </li>
+                                            <?php foreach ($arResult["RECOMMEND_FRONT_PAGE"]["ARTICLE_SECTIONS"] as $section): ?>
+                                                <li>
+                                                    <a href="<?= $section["LINK"] ?>"><?= $section["NAME"] ?></a>
+                                                </li>
+                                            <?php endforeach; ?>
                                         </ul>
                                         <h2 class="h1">
                                             <a
