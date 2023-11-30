@@ -3,10 +3,11 @@ require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/header.php');
 ?>
 
 <?php
-$APPLICATION->SetTitle('Reporter - авторские статьи');
-$APPLICATION->SetPageProperty('TITLE', 'Reporter - блог авторских статей');
+$APPLICATION->SetTitle("Reporter - авторские статьи");
+$APPLICATION->SetPageProperty('TITLE', "Reporter - блог авторских статей");
 $APPLICATION->AddChainItem($APPLICATION->GetTitle(), $APPLICATION->GetCurDir());
 $APPLICATION->SetPageProperty("keywords", "Reporter, журналист, услуги, статьи, новости");
+$APPLICATION->SetPageProperty("description", "Reporter - блог авторских статей");
 ?>
 
 <?php $APPLICATION->IncludeComponent(
