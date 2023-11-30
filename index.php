@@ -59,7 +59,7 @@ $APPLICATION->SetPageProperty("description", "Reporter - блог авторск
         "MESSAGE_404" => "",
         "META_DESCRIPTION" => "article_title",
         "META_KEYWORDS" => "article_title",
-        "NEWS_COUNT" => "6",
+        "NEWS_COUNT" => "4",
         "PAGER_BASE_LINK_ENABLE" => "N",
         "PAGER_DESC_NUMBERING" => "N",
         "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",

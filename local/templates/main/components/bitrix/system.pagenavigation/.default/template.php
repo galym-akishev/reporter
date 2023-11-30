@@ -1,10 +1,6 @@
-<?
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
-{
-	die();
-}
-
-\Bitrix\Main\UI\Extension::load(['ui.design-tokens']);
+<?php
+    if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
+        die();
 
 $this->setFrameMode(true);
 
@@ -13,191 +9,150 @@ if(!$arResult["NavShowAlways"])
 	if ($arResult["NavRecordCount"] == 0 || ($arResult["NavPageCount"] == 1 && $arResult["NavShowAll"] == false))
 		return;
 }
-?>
-<div class="modern-page-navigation">
-<?
 
 $strNavQueryString = ($arResult["NavQueryString"] != "" ? $arResult["NavQueryString"]."&amp;" : "");
 $strNavQueryStringFull = ($arResult["NavQueryString"] != "" ? "?".$arResult["NavQueryString"] : "");
 ?>
-<?
-if($arResult["bDescPageNumbering"] === true):
-	$bFirst = true;
-	if ($arResult["NavPageNomer"] < $arResult["NavPageCount"]):
-		if($arResult["bSavePage"]):
-?>
 
-			<a class="modern-page-previous" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>"><?=GetMessage("nav_prev")?></a>
-<?
-		else:
-			if ($arResult["NavPageCount"] == ($arResult["NavPageNomer"]+1) ):
-?>
-			<a class="modern-page-previous" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>"><?=GetMessage("nav_prev")?></a>
-<?
-			else:
-?>
-			<a class="modern-page-previous" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>"><?=GetMessage("nav_prev")?></a>
-<?
-			endif;
-		endif;
+<div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            <nav class="mt-4">
 
-		if ($arResult["nStartPage"] < $arResult["NavPageCount"]):
-			$bFirst = false;
-			if($arResult["bSavePage"]):
-?>
-			<a class="modern-page-first" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageCount"]?>">1</a>
-<?
-			else:
-?>
-			<a class="modern-page-first" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>">1</a>
-<?
-			endif;
-			if ($arResult["nStartPage"] < ($arResult["NavPageCount"] - 1)):
-/*?>
-			<span class="modern-page-dots">...</span>
-<?*/
-?>
-			<a class="modern-page-dots" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=intval($arResult["nStartPage"] + ($arResult["NavPageCount"] - $arResult["nStartPage"]) / 2)?>">...</a>
-<?
-			endif;
-		endif;
-	endif;
-	do
-	{
-		$NavRecordGroupPrint = $arResult["NavPageCount"] - $arResult["nStartPage"] + 1;
+                <?php if($arResult["bDescPageNumbering"] === true):?>
 
-		if ($arResult["nStartPage"] == $arResult["NavPageNomer"]):
-?>
-		<span class="<?=($bFirst ? "modern-page-first " : "")?>modern-page-current"><?=$NavRecordGroupPrint?></span>
-<?
-		elseif($arResult["nStartPage"] == $arResult["NavPageCount"] && $arResult["bSavePage"] == false):
-?>
-		<a href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>" class="<?=($bFirst ? "modern-page-first" : "")?>"><?=$NavRecordGroupPrint?></a>
-<?
-		else:
-?>
-		<a href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"<?
-			?> class="<?=($bFirst ? "modern-page-first" : "")?>"><?=$NavRecordGroupPrint?></a>
-<?
-		endif;
+                    <div class="pagination">
 
-		$arResult["nStartPage"]--;
-		$bFirst = false;
-	} while($arResult["nStartPage"] >= $arResult["nEndPage"]);
+                        <?php if ($arResult["NavPageNomer"] < $arResult["NavPageCount"]):?>
+                            <?php if($arResult["bSavePage"]):?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            <?php else:?>
+                                <?php if ($arResult["NavPageCount"] == ($arResult["NavPageNomer"]+1) ):?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                <?php else:?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                            <?php endif?>
+                        <?php endif?>
 
-	if ($arResult["NavPageNomer"] > 1):
-		if ($arResult["nEndPage"] > 1):
-			if ($arResult["nEndPage"] > 2):
-/*?>
-		<span class="modern-page-dots">...</span>
-<?*/
-?>
-		<a class="modern-page-dots" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=round($arResult["nEndPage"] / 2)?>">...</a>
-<?
-			endif;
-?>
-		<a href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=1"><?=$arResult["NavPageCount"]?></a>
-<?
-		endif;
+                        <?php while($arResult["nStartPage"] >= $arResult["nEndPage"]):?>
+                            <?php $NavRecordGroupPrint = $arResult["NavPageCount"] - $arResult["nStartPage"] + 1;?>
 
-?>
-		<a class="modern-page-next"href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_next")?></a>
-<?
-	endif;
+                            <?php if ($arResult["nStartPage"] == $arResult["NavPageNomer"]):?>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#!">&nbsp;<?=$NavRecordGroupPrint?>&nbsp;</a>&nbsp;
+                                </li>
+                            <?php elseif($arResult["nStartPage"] == $arResult["NavPageCount"] && $arResult["bSavePage"] == false):?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>"><?=$NavRecordGroupPrint?></a>&nbsp;
+                                </li>
+                            <?php else:?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"><?=$NavRecordGroupPrint?></a>&nbsp;
+                                </li>
+                            <?php endif?>
 
-else:
-	$bFirst = true;
+                            <?php $arResult["nStartPage"]--?>
+                        <?php endwhile?>
 
-	if ($arResult["NavPageNomer"] > 1):
-		if($arResult["bSavePage"]):
-?>
-			<a class="modern-page-previous" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
-<?
-		else:
-			if ($arResult["NavPageNomer"] > 2):
-?>
-			<a class="modern-page-previous" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
-<?
-			else:
-?>
-			<a class="modern-page-previous" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>"><?=GetMessage("nav_prev")?></a>
-<?
-			endif;
+                        <?php if ($arResult["NavPageNomer"] > 1):?>
+                            <li class="page-item">
+                                <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                    </svg>
+                                </a>
+                            </li>
+                        <?php endif?>
 
-		endif;
+                    </div>
 
-		if ($arResult["nStartPage"] > 1):
-			$bFirst = false;
-			if($arResult["bSavePage"]):
-?>
-			<a class="modern-page-first" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=1">1</a>
-<?
-			else:
-?>
-			<a class="modern-page-first" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>">1</a>
-<?
-			endif;
-			if ($arResult["nStartPage"] > 2):
-/*?>
-			<span class="modern-page-dots">...</span>
-<?*/
-?>
-			<a class="modern-page-dots" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=round($arResult["nStartPage"] / 2)?>">...</a>
-<?
-			endif;
-		endif;
-	endif;
+                <?php else:?>
 
-	do
-	{
-		if ($arResult["nStartPage"] == $arResult["NavPageNomer"]):
-?>
-		<span class="<?=($bFirst ? "modern-page-first " : "")?>modern-page-current"><?=$arResult["nStartPage"]?></span>
-<?
-		elseif($arResult["nStartPage"] == 1 && $arResult["bSavePage"] == false):
-?>
-		<a href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>" class="<?=($bFirst ? "modern-page-first" : "")?>"><?=$arResult["nStartPage"]?></a>
-<?
-		else:
-?>
-		<a href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"<?
-			?> class="<?=($bFirst ? "modern-page-first" : "")?>"><?=$arResult["nStartPage"]?></a>
-<?
-		endif;
-		$arResult["nStartPage"]++;
-		$bFirst = false;
-	} while($arResult["nStartPage"] <= $arResult["nEndPage"]);
+                    <div class="pagination">
 
-	if($arResult["NavPageNomer"] < $arResult["NavPageCount"]):
-		if ($arResult["nEndPage"] < $arResult["NavPageCount"]):
-			if ($arResult["nEndPage"] < ($arResult["NavPageCount"] - 1)):
-/*?>
-		<span class="modern-page-dots">...</span>
-<?*/
-?>
-		<a class="modern-page-dots" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=round($arResult["nEndPage"] + ($arResult["NavPageCount"] - $arResult["nEndPage"]) / 2)?>">...</a>
-<?
-			endif;
-?>
-		<a href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageCount"]?>"><?=$arResult["NavPageCount"]?></a>
-<?
-		endif;
-?>
-		<a class="modern-page-next" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>"><?=GetMessage("nav_next")?></a>
-<?
-	endif;
-endif;
+                        <?php if ($arResult["NavPageNomer"] > 1):?>
 
-if ($arResult["bShowAll"]):
-	if ($arResult["NavShowAll"]):
-?>
-		<a class="modern-page-pagen" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>SHOWALL_<?=$arResult["NavNum"]?>=0"><?=GetMessage("nav_paged")?></a>
-<?
-	else:
-?>
-		<a class="modern-page-all" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>SHOWALL_<?=$arResult["NavNum"]?>=1"><?=GetMessage("nav_all")?></a>
-<?
-	endif;
-endif
-?>
+                            <?php if($arResult["bSavePage"]):?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            <?php else:?>
+                                <?php if ($arResult["NavPageNomer"] > 2):?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                <?php else:?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                                <?php endif?>
+                            <?php endif?>
+                        <?php endif?>
+
+                        <?php while($arResult["nStartPage"] <= $arResult["nEndPage"]):?>
+
+                            <?php if ($arResult["nStartPage"] == $arResult["NavPageNomer"]):?>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#!">&nbsp;<?=$arResult["nStartPage"]?>&nbsp;</a>&nbsp;
+                                </li>
+                            <?php elseif($arResult["nStartPage"] == 1 && $arResult["bSavePage"] == false):?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>"><?=$arResult["nStartPage"]?></a>&nbsp;
+                                </li>
+                            <?php else:?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"><?=$arResult["nStartPage"]?></a>&nbsp;
+                                </li>
+                            <?php endif?>
+                            <?php $arResult["nStartPage"]++?>
+                        <?php endwhile?>
+
+                        <?php if($arResult["NavPageNomer"] < $arResult["NavPageCount"]):?>
+                            <li class="page-item">
+                                <a class="page-link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                    </svg>
+                                </a>
+                            </li>
+                        <?php endif?>
+
+                    </div>
+
+                <?php endif ?>
+
+            </nav>
+        </div>
+    </div>
 </div>

@@ -18,6 +18,9 @@ $this->setFrameMode(true);
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto mb-5 mb-lg-0">
+                    <div class="breadcrumbs mb-4"> <a href="/">Главная</a>
+                        <span class="mx-1">/</span>  <a href="/about-me">Обо мне</a>
+                    </div>
                     <img
                             src="<?= $arResult["DETAIL_PICTURE"]["SRC"] ?>"
                             class="img-fluid w-100 mb-4"
