@@ -66,7 +66,7 @@ use Bitrix\Main\Page\Asset;
                                 <a class="dropdown-item" href="travel.html">Раздел 3</a>
                             </div>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="contact.html">Контакты</a>
+                        <li class="nav-item"> <a class="nav-link" href="/contact">Контакты</a>
                         </li>
                     </ul>
                 </div>
