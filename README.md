@@ -1,4 +1,4 @@
-# Описание портфолио проекта airspace.lokalwebs.com реализованного на Bitrix Framework
+# Описание портфолио проекта reporter.lokalwebs.com реализованного на Bitrix Framework
 1. Проект представляет собой **вымышленного** репортера.
 2. Проект реализован с помощью Bitrix Framework на основе **готовой верстке**.
 3. Проект доступен по адресу https://reporter.lokalwebs.com/.
