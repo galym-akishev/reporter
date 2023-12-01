@@ -54,21 +54,22 @@ use Bitrix\Main\Page\Asset;
                     </button>
                 </div>
                 <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
-                    <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
-                        <li class="nav-item"> <a class="nav-link" href="/about-me">Обо мне</a>
-                        </li>
-                        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-                                                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Статьи
-                            </a>
-                            <div class="dropdown-menu"> <a class="dropdown-item" href="travel.html">Раздел 1</a>
-                                <a class="dropdown-item" href="travel.html">Раздел 2</a>
-                                <a class="dropdown-item" href="travel.html">Раздел 3</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"> <a class="nav-link" href="/contact">Контакты</a>
-                        </li>
-                    </ul>
+                    <?php $APPLICATION->IncludeComponent(
+                        "bitrix:menu",
+                        "top_menu",
+                        Array(
+                            "ALLOW_MULTI_SELECT" => "N",
+                            "CHILD_MENU_TYPE" => "left",
+                            "DELAY" => "N",
+                            "MAX_LEVEL" => "1",
+                            "MENU_CACHE_GET_VARS" => array(""),
+                            "MENU_CACHE_TIME" => "3600",
+                            "MENU_CACHE_TYPE" => "N",
+                            "MENU_CACHE_USE_GROUPS" => "N",
+                            "ROOT_MENU_TYPE" => "bottom",
+                            "USE_EXT" => "N"
+                        )
+                    );?>
                 </div>
                 <?php $APPLICATION->IncludeComponent(
                     "bitrix:search.form",
